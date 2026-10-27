@@ -80,3 +80,6 @@ jobs:
           test -d css
           test -d js
           echo "Estructura del proyecto verificada"
+
+      - name: Ejecutar pruebas unitarias
+        run: node --test tests/app.test.js
