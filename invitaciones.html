@@ -1,0 +1,239 @@
+<script>
+    if (!document.getElementById("contenido-principal")) {
+        window.location.replace("index.html#invitaciones");
+    }
+</script>
+
+<div class="container-fluid py-4 px-3 px-md-4 px-xl-5">
+    <div class="row g-4">
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body p-4 p-md-5">
+                    <div class="mb-4">
+                        <span class="badge bg-primary px-3 py-2 mb-3">
+                            MeetUp Planner
+                        </span>
+
+                        <h2
+                            class="fw-bold text-primary mb-2"
+                            id="tituloFormularioInvitacion"
+                        >
+                            Nueva Invitación
+                        </h2>
+
+                        <p
+                            class="text-muted mb-0"
+                            id="textoFormularioInvitacion"
+                        >
+                            Gestiona invitaciones y asistentes para tus eventos.
+                        </p>
+
+                        <div
+                            id="modoEdicionInvitacion"
+                            class="alert alert-warning mt-3 mb-0 d-none"
+                        ></div>
+                    </div>
+
+                    <form id="frmInvitaciones" method="POST">
+                        <input type="hidden" id="txtIVID" value="">
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label
+                                    for="txtIVNombre"
+                                    class="form-label fw-semibold"
+                                >
+                                    Nombre del invitado
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    name="txtIVNombre"
+                                    id="txtIVNombre"
+                                    maxlength="120"
+                                    autocomplete="name"
+                                    placeholder="Ingresa el nombre"
+                                >
+                            </div>
+
+                            <div class="col-12">
+                                <label
+                                    for="txtIVCorreo"
+                                    class="form-label fw-semibold"
+                                >
+                                    Correo electrónico
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control form-control-lg"
+                                    name="txtIVCorreo"
+                                    id="txtIVCorreo"
+                                    maxlength="160"
+                                    autocomplete="email"
+                                    placeholder="correo@email.com"
+                                >
+                            </div>
+
+                            <div class="col-12">
+                                <label
+                                    for="cboIVEvento"
+                                    class="form-label fw-semibold"
+                                >
+                                    Evento
+                                </label>
+
+                                <select
+                                    name="cboIVEvento"
+                                    id="cboIVEvento"
+                                    class="form-select form-select-lg"
+                                >
+                                    <option value="" selected disabled>
+                                        Selecciona un evento
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 d-none" id="bloqueEstadoInvitacion">
+                                <label
+                                    for="cboIVEstado"
+                                    class="form-label fw-semibold"
+                                >
+                                    Estado de la invitación
+                                </label>
+
+                                <select
+                                    name="cboIVEstado"
+                                    id="cboIVEstado"
+                                    class="form-select form-select-lg"
+                                >
+                                    <option value="Pendiente">
+                                        Pendiente
+                                    </option>
+
+                                    <option value="Confirmado">
+                                        Confirmado
+                                    </option>
+
+                                    <option value="Cancelado">
+                                        Cancelado
+                                    </option>
+                                </select>
+
+                                <div class="form-text">
+                                    Modifica el estado actual de asistencia del invitado.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label
+                                    for="txtIVMensaje"
+                                    class="form-label fw-semibold"
+                                >
+                                    Mensaje
+                                </label>
+
+                                <textarea
+                                    class="form-control"
+                                    name="txtIVMensaje"
+                                    id="txtIVMensaje"
+                                    rows="5"
+                                    maxlength="1000"
+                                    placeholder="Escribe un mensaje de invitación..."
+                                ></textarea>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary btn-lg px-4"
+                                        id="btnAgregarInvitacion"
+                                    >
+                                        Enviar invitación
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-secondary btn-lg px-4"
+                                        id="btnIVLimpiar"
+                                    >
+                                        Limpiar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-7">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="bg-white border-bottom p-4">
+                    <div class="encabezado-lista-invitaciones">
+                        <div>
+                            <h3 class="fw-bold mb-1">Invitaciones enviadas</h3>
+                            <p class="text-muted mb-0">
+                                Historial de invitaciones registradas
+                            </p>
+                        </div>
+
+                        <div class="bloque-buscador-invitaciones">
+                            <label
+                                for="txtBuscarInvitacion"
+                                class="form-label fw-semibold mb-2"
+                            >
+                                Buscar invitación
+                            </label>
+
+                            <div class="input-group buscador-invitaciones">
+                                <input
+                                    type="search"
+                                    id="txtBuscarInvitacion"
+                                    class="form-control"
+                                    autocomplete="off"
+                                    placeholder="Nombre, correo, evento, estado..."
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    id="btnLimpiarBusquedaInvitacion"
+                                >
+                                    Limpiar
+                                </button>
+                            </div>
+
+                            <div
+                                id="contadorInvitaciones"
+                                class="small text-muted mt-2"
+                            >
+                                Cargando invitaciones...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive tabla-invitaciones-contenedor">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-uppercase">
+                            <tr>
+                                <th class="ps-4">ID</th>
+                                <th>Evento</th>
+                                <th>Invitado</th>
+                                <th>Correo</th>
+                                <th>Mensaje</th>
+                                <th>Estado</th>
+                                <th class="pe-4">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaInvitaciones"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

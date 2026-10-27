@@ -1,0 +1,154 @@
+<script>
+    if (!document.getElementById("contenido-principal")) {
+        window.location.replace("index.html#eventos");
+    }
+</script>
+
+<div class="container-fluid py-4 px-3 px-md-4 px-xl-5">
+    <div class="row g-4">
+        <!-- =====================================================
+            FORMULARIO EVENTOS
+        ====================================================== -->
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body p-4 p-md-5">
+                    <!-- HEADER -->
+                    <div class="mb-4">
+                        <span class="badge bg-primary px-3 py-2 mb-3">MeetUp Planner</span>
+                        <h2 class="fw-bold text-primary mb-2">Registro de Eventos</h2>
+                        <p class="text-muted mb-0">Organiza y administra eventos dentro de la plataforma.</p>
+                    </div>
+                    <!-- FORM -->
+                    <form id="frmEventos" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id_evento" id="txtEVID">
+
+                        <div id="estadoEdicionEvento" class="alert alert-warning d-none" role="status"></div>
+
+                        <div class="row g-3">
+                            <!-- TITULO -->
+                            <div class="col-12">
+                                <label for="txtEVTitulo" class="form-label fw-semibold">Título del Evento</label>
+                                <input type="text" class="form-control form-control-lg" name="txtEVTitulo" id="txtEVTitulo" placeholder="Ingresa el título" maxlength="150" required>
+                            </div>
+                            <!-- DESCRIPCION -->
+                            <div class="col-12">
+                                <label for="txtEVDescripcion" class="form-label fw-semibold">Descripción</label>
+                                <textarea class="form-control" name="txtEVDescripcion" id="txtEVDescripcion" rows="4" placeholder="Describe el evento..." maxlength="1000" required></textarea>
+                            </div>
+                            <!-- UBICACION -->
+                            <div class="col-12 col-md-6">
+                                <label for="txtEVUbicacion" class="form-label fw-semibold">Ubicación</label>
+                                <input type="text" class="form-control" name="txtEVUbicacion" id="txtEVUbicacion" placeholder="Lugar del evento" maxlength="255" required>
+                            </div>
+                            <!-- CLIENTE -->
+                            <div class="col-12 col-md-6">
+                                <label for="cboEVCliente" class="form-label fw-semibold">
+                                    Cliente
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    name="cboEVCliente"
+                                    id="cboEVCliente" required>
+                                </select>
+                            </div>
+                            <!-- FECHA -->
+                            <div class="col-12 col-lg-6">
+                                <label for="txtEVFecha" class="form-label fw-semibold">Fecha</label>
+                                <input type="date" class="form-control" name="txtEVFecha" id="txtEVFecha" required>
+                            </div>
+                            <!-- HORA -->
+                            <div class="col-12 col-lg-6">
+                                <label for="txtEVHora" class="form-label fw-semibold">Hora</label>
+                                <input type="time" class="form-control" name="txtEVHora" id="txtEVHora" required>
+                            </div>
+                            <!-- IMAGEN -->
+                            <div class="col-12">
+                                <label for="filEVImagen" class="form-label fw-semibold">Imagen del Evento</label>
+                                <input type="file" class="form-control" name="filEVImagen" id="filEVImagen" accept="image/jpeg,image/png,image/webp">
+                                <div id="textoEVImagenActual" class="form-text">Formatos permitidos: JPG, PNG y WEBP.</div>
+                            </div>
+                            <!-- BOTONES -->
+                            <div class="col-12 mt-4">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-4" id="btnEVGuardar">Guardar</button>
+                                    <button type="reset" class="btn btn-outline-secondary btn-lg px-4" id="btnEVLimpiar">Limpiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- =====================================================
+            TABLA EVENTOS
+        ====================================================== -->
+        <div class="col-12 col-xl-7">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <!-- HEADER -->
+                <div class="bg-white border-bottom p-4">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                            <div>
+                                <h3 class="fw-bold mb-1">Próximos Eventos</h3>
+                                <p class="text-muted mb-0">Eventos registrados en la plataforma</p>
+                            </div>
+
+                            <span
+                                class="badge bg-primary p-3 fs-6 align-self-start align-self-md-center"
+                                id="badgeTotalEventos">
+                                Eventos Activos
+                            </span>
+                        </div>
+
+                        <div>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" aria-hidden="true">
+                                    <i class="bi bi-search"></i>
+                                </span>
+
+                                <input
+                                    type="search"
+                                    class="form-control"
+                                    id="txtBuscarEvento"
+                                    placeholder="Buscar por título, ubicación, cliente o fecha"
+                                    autocomplete="off"
+                                    aria-label="Buscar evento">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary d-none"
+                                    id="btnLimpiarBusquedaEvento">
+                                    Limpiar
+                                </button>
+                            </div>
+
+                            <small
+                                class="text-muted d-block mt-2"
+                                id="resultadoBusquedaEventos">
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <!-- TABLA -->
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-uppercase">
+                            <tr>
+                                <th class="ps-4">ID</th>
+                                <th>Imagen</th>
+                                <th>Evento</th>
+                                <th>Fecha</th>
+                                <th class="pe-4">Ubicación</th>
+                                <th>Cliente</th>
+                                <th class="pe-4 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaEventos">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

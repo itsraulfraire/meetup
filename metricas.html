@@ -1,0 +1,458 @@
+<script>
+    if (!document.getElementById("contenido-principal")) {
+        window.location.replace("index.html#metricas");
+    }
+</script>
+
+<section id="metricasDashboard" class="metricas-page py-4 py-lg-5">
+
+    <div class="container-fluid px-3 px-md-4 px-xl-5">
+
+        <!-- ENCABEZADO -->
+        <div class="metricas-header mb-4">
+
+            <div>
+                <span class="metricas-eyebrow text-uppercase">
+                    Resumen del sistema
+                </span>
+
+                <h1 class="metricas-title mt-2 mb-2">
+                    Métricas
+                </h1>
+
+                <p class="metricas-subtitle mb-0">
+                    Consulta el comportamiento de los eventos, usuarios
+                    e invitaciones registrados en MeetUp Planner.
+                </p>
+            </div>
+
+            <div class="metricas-header-actions">
+
+                <div class="metricas-auto-status">
+                    <span class="metricas-auto-dot" aria-hidden="true"></span>
+
+                    <div>
+                        <small
+                            id="fechaActualizacionMetricas"
+                            class="text-muted"
+                        >
+                            Cada 5 segundos
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            id="alertaMetricas"
+            class="alert alert-secondary mb-4"
+            role="alert"
+        >
+            Consultando métricas...
+        </div>
+
+        <!-- TARJETAS PRINCIPALES -->
+        <div class="row g-3 g-xl-4 mb-4">
+
+            <div class="col-12 col-sm-6 col-xl">
+
+                <article class="card metrica-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <span class="metrica-label">
+                            Total de eventos
+                        </span>
+
+                        <div
+                            id="metricaTotalEventos"
+                            class="metrica-value"
+                        >
+                            0
+                        </div>
+
+                        <p
+                            id="metricaEventosHoyTexto"
+                            class="metrica-detail mb-0"
+                        >
+                            0 eventos hoy
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl">
+
+                <article class="card metrica-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <span class="metrica-label">
+                            Próximos eventos
+                        </span>
+
+                        <div
+                            id="metricaProximosEventos"
+                            class="metrica-value"
+                        >
+                            0
+                        </div>
+
+                        <p class="metrica-detail mb-0">
+                            Desde la fecha actual
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl">
+
+                <article class="card metrica-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <span class="metrica-label">
+                            Usuarios
+                        </span>
+
+                        <div
+                            id="metricaTotalUsuarios"
+                            class="metrica-value"
+                        >
+                            0
+                        </div>
+
+                        <p class="metrica-detail mb-0">
+                            Registrados en la plataforma
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl">
+
+                <article class="card metrica-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <span class="metrica-label">
+                            Invitaciones
+                        </span>
+
+                        <div
+                            id="metricaTotalInvitaciones"
+                            class="metrica-value"
+                        >
+                            0
+                        </div>
+
+                        <p
+                            id="metricaPendientesTexto"
+                            class="metrica-detail mb-0"
+                        >
+                            0 invitaciones pendientes
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl">
+
+                <article class="card metrica-card metrica-card-highlight h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <span class="metrica-label">
+                            Confirmadas
+                        </span>
+
+                        <div
+                            id="metricaConfirmadas"
+                            class="metrica-value"
+                        >
+                            0
+                        </div>
+
+                        <p
+                            id="metricaTasaConfirmacion"
+                            class="metrica-detail mb-0"
+                        >
+                            0% de confirmación
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- PRIMERA FILA DE GRÁFICAS -->
+        <div class="row g-4 mb-4">
+
+            <div class="col-12 col-xl-8">
+
+                <article class="card grafica-card h-100 shadow-sm">
+
+                    <div class="card-body p-3 p-md-4">
+
+                        <div class="grafica-heading">
+
+                            <div>
+                                <h2 class="grafica-title">
+                                    Eventos por mes
+                                </h2>
+
+                                <p class="grafica-description">
+                                    Cantidad de eventos programados durante
+                                    los últimos seis meses.
+                                </p>
+                            </div>
+
+                            <span class="grafica-tag">
+                                Tendencia
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="graficaEventosMes"
+                            class="grafica-contenedor"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-xl-4">
+
+                <article class="card grafica-card h-100 shadow-sm">
+
+                    <div class="card-body p-3 p-md-4">
+
+                        <div class="grafica-heading">
+
+                            <div>
+                                <h2 class="grafica-title">
+                                    Estado de invitaciones
+                                </h2>
+
+                                <p class="grafica-description">
+                                    Distribución entre confirmadas,
+                                    pendientes y canceladas.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="graficaEstadosInvitaciones"
+                            class="grafica-contenedor"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- SEGUNDA FILA DE GRÁFICAS -->
+        <div class="row g-4 mb-4">
+
+            <div class="col-12 col-lg-6">
+
+                <article class="card grafica-card h-100 shadow-sm">
+
+                    <div class="card-body p-3 p-md-4">
+
+                        <div class="grafica-heading">
+
+                            <div>
+                                <h2 class="grafica-title">
+                                    Eventos por cliente
+                                </h2>
+
+                                <p class="grafica-description">
+                                    Usuarios con mayor cantidad de eventos
+                                    registrados.
+                                </p>
+                            </div>
+
+                            <span class="grafica-tag">
+                                Top 5
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="graficaEventosCliente"
+                            class="grafica-contenedor"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-lg-6">
+
+                <article class="card grafica-card h-100 shadow-sm">
+
+                    <div class="card-body p-3 p-md-4">
+
+                        <div class="grafica-heading">
+
+                            <div>
+                                <h2 class="grafica-title">
+                                    Eventos por ubicación
+                                </h2>
+
+                                <p class="grafica-description">
+                                    Lugares utilizados con mayor frecuencia.
+                                </p>
+                            </div>
+
+                            <span class="grafica-tag">
+                                Top 5
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="graficaEventosUbicacion"
+                            class="grafica-contenedor"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- TERCERA FILA -->
+        <div class="row g-4 mb-4">
+
+            <div class="col-12">
+
+                <article class="card grafica-card shadow-sm">
+
+                    <div class="card-body p-3 p-md-4">
+
+                        <div class="grafica-heading">
+
+                            <div>
+                                <h2 class="grafica-title">
+                                    Invitaciones por evento
+                                </h2>
+
+                                <p class="grafica-description">
+                                    Eventos que concentran la mayor cantidad
+                                    de personas invitadas.
+                                </p>
+                            </div>
+
+                            <span class="grafica-tag">
+                                Top 5
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="graficaInvitacionesEvento"
+                            class="grafica-contenedor"
+                        ></div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+        <!-- PRÓXIMOS EVENTOS -->
+        <article class="card proximos-card shadow-sm">
+
+            <div class="card-body p-0">
+
+                <div class="proximos-heading p-3 p-md-4">
+
+                    <div>
+                        <h2 class="grafica-title">
+                            Próximos eventos
+                        </h2>
+
+                        <p class="grafica-description mb-0">
+                            Los cinco eventos más cercanos a partir de hoy.
+                        </p>
+                    </div>
+
+                    <a
+                        href="eventos.html"
+                        class="btn btn-outline-secondary menu-link"
+                    >
+                        Ver todos los eventos
+                    </a>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead>
+                            <tr>
+                                <th class="ps-4">ID</th>
+                                <th>Evento</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th class="pe-4">Ubicación</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaProximosEventosMetricas">
+
+                            <tr>
+                                <td
+                                    colspan="5"
+                                    class="text-center text-muted py-4"
+                                >
+                                    Cargando próximos eventos...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>

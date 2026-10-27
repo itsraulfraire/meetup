@@ -1,0 +1,255 @@
+<script>
+    if (!document.getElementById("contenido-principal")) {
+        window.location.replace("index.html#usuarios");
+    }
+</script>
+
+<div class="container-fluid py-4 px-3 px-md-4 px-xl-5 usuarios-page">
+    <div class="row g-4">
+
+        <div class="col-12 col-xl-5">
+            <div class="card border-0 shadow-lg rounded-4 h-100">
+                <div class="card-body p-4 p-md-5">
+
+                    <div class="mb-4">
+                        <span class="badge bg-primary px-3 py-2 mb-3">
+                            MeetUp Planner
+                        </span>
+
+                        <h2
+                            id="tituloFormularioUsuario"
+                            class="fw-bold text-primary mb-2"
+                        >
+                            Registro de Usuarios
+                        </h2>
+
+                        <p
+                            id="textoFormularioUsuario"
+                            class="text-muted mb-0"
+                        >
+                            Administra los usuarios registrados dentro del sistema.
+                        </p>
+                    </div>
+
+                    <div
+                        id="modoEdicionUsuario"
+                        class="alert alert-warning py-2 d-none"
+                    ></div>
+
+                    <form id="frmRegistro" method="POST" novalidate>
+
+                        <input type="hidden" id="txtREGID">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <label
+                                    for="txtREGNombre"
+                                    class="form-label fw-semibold"
+                                >
+                                    Nombre completo
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    name="txtREGNombre"
+                                    id="txtREGNombre"
+                                    placeholder="Ingresa el nombre"
+                                    autocomplete="name"
+                                    maxlength="120"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label
+                                    for="txtREGCorreo"
+                                    class="form-label fw-semibold"
+                                >
+                                    Correo electrónico
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    name="txtREGCorreo"
+                                    id="txtREGCorreo"
+                                    placeholder="correo@email.com"
+                                    autocomplete="email"
+                                    maxlength="150"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label
+                                    for="txtREGTelefono"
+                                    class="form-label fw-semibold"
+                                >
+                                    Teléfono
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    inputmode="numeric"
+                                    class="form-control"
+                                    name="txtREGTelefono"
+                                    id="txtREGTelefono"
+                                    placeholder="8781234567"
+                                    autocomplete="tel"
+                                    maxlength="20"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                <label
+                                    for="txtREGContraseña"
+                                    id="lblREGContrasena"
+                                    class="form-label fw-semibold"
+                                >
+                                    Contraseña
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    name="txtREGContraseña"
+                                    id="txtREGContraseña"
+                                    placeholder="********"
+                                    autocomplete="new-password"
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="col-12 col-lg-6">
+                                <label
+                                    for="txtREGConfirmarContraseña"
+                                    id="lblREGConfirmarContrasena"
+                                    class="form-label fw-semibold"
+                                >
+                                    Confirmar contraseña
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    name="txtREGConfirmarContraseña"
+                                    id="txtREGConfirmarContraseña"
+                                    placeholder="********"
+                                    autocomplete="new-password"
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="col-12">
+                                <small
+                                    id="ayudaContrasenaUsuario"
+                                    class="text-muted d-none"
+                                ></small>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary btn-lg px-4"
+                                        id="btnREGGuardar"
+                                    >
+                                        Guardar
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline-secondary btn-lg px-4"
+                                        id="btnREGLimpiar"
+                                    >
+                                        Limpiar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-7">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <div class="bg-white border-bottom p-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h3 class="fw-bold mb-1">Usuarios registrados</h3>
+                            <p class="text-muted mb-0">
+                                Busca, edita o elimina usuarios sin recargar la página.
+                            </p>
+                        </div>
+
+                        <span class="badge bg-primary p-3 fs-6">
+                            Sistema activo
+                        </span>
+                    </div>
+
+                    <div class="row g-2 align-items-center mt-3">
+                        <div class="col-12 col-md">
+                            <label for="txtBuscarUsuario" class="visually-hidden">
+                                Buscar usuario
+                            </label>
+
+                            <input
+                                type="search"
+                                id="txtBuscarUsuario"
+                                class="form-control usuario-buscador"
+                                placeholder="Buscar por nombre, correo, teléfono o ID..."
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <div class="col-12 col-md-auto">
+                            <button
+                                type="button"
+                                id="btnLimpiarBusquedaUsuario"
+                                class="btn btn-outline-secondary w-100"
+                            >
+                                Limpiar búsqueda
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        id="contadorUsuarios"
+                        class="small text-muted mt-2"
+                    >
+                        Cargando usuarios...
+                    </div>
+                </div>
+
+                <div class="table-responsive usuarios-tabla-contenedor">
+                    <table class="table table-hover align-middle mb-0 usuarios-tabla">
+                        <thead class="table-light text-uppercase">
+                            <tr>
+                                <th class="ps-4">ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th class="pe-4">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaUsuarios">
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-5">
+                                    Cargando usuarios...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

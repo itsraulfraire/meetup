@@ -1,0 +1,253 @@
+<script>
+    if (!document.getElementById("contenido-principal")) {
+        window.location.replace("index.html#login");
+    }
+</script>
+
+<section class="login-section">
+    <div class="container py-4 py-md-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+
+                <div class="card login-card border-0 shadow rounded-4">
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <!-- ENCABEZADO -->
+                        <div class="text-center mb-4">
+
+                            <img
+                                src="img/logo.png"
+                                alt="MeetUp Planner"
+                                class="login-logo mb-3">
+
+                            <h2 class="fw-bold mb-2">
+                                Inicio de sesión
+                            </h2>
+
+                            <p class="text-muted mb-0">
+                                Selecciona una opción para acceder a la aplicación.
+                            </p>
+
+                        </div>
+
+                        <!-- =================================================
+                             LOGIN CON CONTRASEÑA
+                        ================================================== -->
+                        <div class="login-block">
+
+                            <h5 class="fw-bold mb-3">
+                                Acceso con contraseña
+                            </h5>
+
+                            <form id="frmLogin" method="POST">
+
+                                <div class="row g-3">
+
+                                    <div class="col-12 col-md-6">
+
+                                        <label
+                                            for="txtLoginCorreo"
+                                            class="form-label fw-semibold">
+
+                                            Correo electrónico
+
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            class="form-control form-control-lg login-input"
+                                            id="txtLoginCorreo"
+                                            placeholder="correo@email.com"
+                                            autocomplete="email">
+
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+
+                                        <label
+                                            for="txtLoginContrasena"
+                                            class="form-label fw-semibold">
+
+                                            Contraseña
+
+                                        </label>
+
+                                        <input
+                                            type="password"
+                                            class="form-control form-control-lg login-input"
+                                            id="txtLoginContrasena"
+                                            placeholder="Ingresa tu contraseña"
+                                            autocomplete="current-password">
+
+                                    </div>
+
+                                    <div class="col-12">
+
+                                        <div class="d-grid">
+
+                                            <button
+                                                type="submit"
+                                                class="btn login-primary-button btn-lg"
+                                                id="btnLogin">
+
+                                                Iniciar sesión
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- =================================================
+                             LOGIN CON PIN
+                        ================================================== -->
+                        <div class="login-block">
+
+                            <h5 class="fw-bold mb-1">
+                                Acceso con PIN
+                            </h5>
+
+                            <p class="text-muted small mb-3">
+                                Utiliza esta opción si ya configuraste un PIN.
+                            </p>
+
+                            <form id="frmLoginPIN">
+
+                                <div class="row g-3">
+
+                                    <div class="col-12 col-md-6">
+
+                                        <label
+                                            for="txtLoginPINCorreo"
+                                            class="form-label fw-semibold">
+
+                                            Correo electrónico
+
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            class="form-control form-control-lg login-input"
+                                            id="txtLoginPINCorreo"
+                                            placeholder="correo@email.com"
+                                            autocomplete="email">
+
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+
+                                        <label
+                                            for="txtLoginPIN"
+                                            class="form-label fw-semibold">
+
+                                            PIN
+
+                                        </label>
+
+                                        <input
+                                            type="password"
+                                            inputmode="numeric"
+                                            pattern="[0-9]*"
+                                            minlength="4"
+                                            maxlength="6"
+                                            class="form-control form-control-lg login-input campo-pin"
+                                            id="txtLoginPIN"
+                                            placeholder="4 a 6 números">
+
+                                    </div>
+
+                                    <div class="col-12">
+
+                                        <div class="d-grid">
+
+                                            <button
+                                                type="submit"
+                                                class="btn login-secondary-button btn-lg"
+                                                id="btnLoginPIN">
+
+                                                Acceder con PIN
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- =================================================
+                             LOGIN CON QR
+                        ================================================== -->
+                        <div class="text-center">
+
+                            <p class="text-muted mb-3">
+                                También puedes iniciar sesión desde otro dispositivo.
+                            </p>
+
+                            <div class="d-grid">
+
+                                <button
+                                    type="button"
+                                    class="btn login-qr-button btn-lg"
+                                    id="btnGenerarQR">
+
+                                    Iniciar sesión con código QR
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- CONTENEDOR DEL QR -->
+                        <div
+                            id="contenedorQR"
+                            class="login-qr-container text-center mt-4 d-none">
+
+                            <h5 class="fw-bold mb-2">
+                                Escanea el código QR
+                            </h5>
+
+                            <p class="text-muted small mb-3">
+                                Escanéalo desde otro dispositivo e ingresa tus datos.
+                            </p>
+
+                            <div id="divQR" class="mb-3"></div>
+
+                            <p
+                                id="estadoQR"
+                                class="text-muted mb-0">
+
+                                Esperando confirmación...
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,118 @@
+/* ======================================================
+   MÓDULO DE USUARIOS
+====================================================== */
+
+.usuarios-page {
+    min-height: calc(100vh - 85px);
+}
+
+.usuario-buscador {
+    min-height: 46px;
+}
+
+.usuarios-tabla {
+    min-width: 860px;
+}
+
+.usuarios-tabla thead th {
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.acciones-usuario {
+    min-width: 150px;
+}
+
+.acciones-usuario .btn {
+    width: auto;
+    min-width: 70px;
+}
+
+#modoEdicionUsuario {
+    border-radius: 12px;
+}
+
+#contadorUsuarios {
+    min-height: 20px;
+}
+
+/* TABLETS */
+@media (max-width: 992px) {
+    .usuarios-page .card-body {
+        padding: 2rem;
+    }
+
+    .usuarios-page .table {
+        font-size: 0.95rem;
+    }
+
+    .usuarios-page h2 {
+        font-size: 1.8rem;
+    }
+
+    .usuarios-page h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* MÓVILES */
+@media (max-width: 768px) {
+    .usuarios-page .table {
+        font-size: 0.85rem;
+    }
+
+    .usuarios-page .table th,
+    .usuarios-page .table td {
+        white-space: nowrap;
+    }
+
+    .usuarios-page .badge {
+        font-size: 0.75rem;
+    }
+
+    .usuarios-page .card-body {
+        padding: 1.5rem;
+    }
+
+    .usuarios-page .form-control,
+    .usuarios-page .form-select {
+        font-size: 0.95rem;
+    }
+
+    .acciones-usuario {
+        flex-wrap: nowrap !important;
+    }
+
+    .acciones-usuario .btn {
+        width: auto !important;
+    }
+}
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 576px) {
+    .usuarios-page {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .usuarios-page h2 {
+        font-size: 1.5rem;
+    }
+
+    .usuarios-page h3 {
+        font-size: 1.2rem;
+    }
+
+    .usuarios-page .card-body {
+        padding: 1.2rem;
+    }
+
+    .usuarios-page .table {
+        font-size: 0.8rem;
+    }
+
+    .usuarios-tabla {
+        min-width: 780px;
+    }
+}

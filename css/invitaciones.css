@@ -1,0 +1,149 @@
+/* ======================================================
+   MÓDULO DE INVITACIONES
+====================================================== */
+
+
+.encabezado-lista-invitaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.bloque-buscador-invitaciones {
+    width: 100%;
+}
+
+.buscador-invitaciones .form-control,
+.buscador-invitaciones .btn {
+    min-height: 44px;
+}
+
+.tabla-invitaciones-contenedor {
+    max-height: 720px;
+}
+
+#tablaInvitaciones tr {
+    transition: background-color 0.2s ease;
+}
+
+.mensaje-invitacion {
+    display: block;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.acciones-invitacion {
+    min-width: 150px;
+}
+
+.acciones-invitacion .btn {
+    white-space: nowrap;
+}
+
+#modoEdicionInvitacion {
+    border-radius: 12px;
+}
+
+/* ======================================================
+   TABLETS
+====================================================== */
+
+@media (max-width: 992px) {
+    .card-body {
+        padding: 2rem;
+    }
+
+    .table {
+        font-size: 0.95rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ======================================================
+   MÓVILES
+====================================================== */
+
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table th,
+    .table td {
+        white-space: nowrap;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .form-control,
+    .form-select {
+        font-size: 0.95rem;
+    }
+
+    .mensaje-invitacion {
+        max-width: 190px;
+    }
+
+    .acciones-invitacion {
+        flex-direction: column;
+        min-width: 105px;
+    }
+
+    .acciones-invitacion .btn {
+        width: 100%;
+    }
+
+    #btnAgregarInvitacion,
+    #btnIVLimpiar {
+        width: 100%;
+    }
+}
+
+/* ======================================================
+   CELULARES PEQUEÑOS
+====================================================== */
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-body {
+        padding: 1.2rem;
+    }
+
+    .table {
+        font-size: 0.8rem;
+    }
+
+    .buscador-invitaciones {
+        display: grid;
+        gap: 8px;
+    }
+
+    .buscador-invitaciones .form-control,
+    .buscador-invitaciones .btn {
+        width: 100%;
+        border-radius: 10px !important;
+    }
+}

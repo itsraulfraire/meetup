@@ -1,0 +1,320 @@
+/* =========================================================
+   VISTA DE MÉTRICAS
+========================================================= */
+
+.metricas-page {
+    min-height: calc(100vh - 90px);
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(253, 243, 184, 0.58),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #fcf9f2 0%,
+            #f6f2e9 100%
+        );
+}
+
+.metricas-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.metricas-eyebrow {
+    color: #8d8476;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.metricas-title {
+    color: #2b2b2b;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.metricas-subtitle {
+    max-width: 760px;
+    color: #6d685f;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.metricas-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.metricas-auto-status {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 15px;
+    border: 1px solid rgba(182, 173, 157, 0.28);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 8px 22px rgba(61, 55, 47, 0.08);
+}
+
+.metricas-auto-status strong {
+    color: #4d483f;
+    font-size: 0.84rem;
+}
+
+.metricas-auto-status small {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.75rem;
+}
+
+.metricas-auto-dot {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: #3aa76d;
+    box-shadow: 0 0 0 5px rgba(58, 167, 109, 0.13);
+    animation: pulso-metricas 1.8s ease-in-out infinite;
+}
+
+@keyframes pulso-metricas {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.82);
+        opacity: 0.65;
+    }
+}
+
+.metrica-card,
+.grafica-card,
+.proximos-card {
+    overflow: hidden;
+    border: 1px solid rgba(182, 173, 157, 0.18) !important;
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.metrica-card {
+    position: relative;
+    min-height: 160px;
+}
+
+.metrica-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: #b6ad9d;
+}
+
+.metrica-card-highlight {
+    background:
+        linear-gradient(
+            140deg,
+            rgba(253, 243, 184, 0.88),
+            rgba(255, 255, 255, 0.96)
+        );
+}
+
+.metrica-card-highlight::before {
+    background: #d6b84c;
+}
+
+.metrica-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #777064;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.metrica-value {
+    margin-bottom: 8px;
+    color: #2b2b2b;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1;
+}
+
+.metrica-detail {
+    color: #7c766c;
+    font-size: 0.86rem;
+}
+
+.grafica-card {
+    min-height: 430px;
+}
+
+.grafica-heading,
+.proximos-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.grafica-title {
+    margin-bottom: 6px;
+    color: #2b2b2b;
+    font-size: 1.18rem;
+    font-weight: 750;
+}
+
+.grafica-description {
+    margin-bottom: 0;
+    color: #7b756b;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.grafica-tag {
+    flex: 0 0 auto;
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: #f4efe4;
+    color: #776f61;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.grafica-contenedor {
+    width: 100%;
+    min-height: 300px;
+    margin-top: 14px;
+}
+
+.proximos-card .table thead th {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-bottom-color: #ece7dd;
+    background: #faf8f3;
+    color: #746d62;
+    font-size: 0.76rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.proximos-card .table tbody td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom-color: #f0ece4;
+}
+
+.apexcharts-tooltip,
+.apexcharts-menu {
+    border: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 30px rgba(61, 55, 47, 0.16) !important;
+}
+
+.apexcharts-menu {
+    overflow: hidden;
+}
+
+.apexcharts-menu-item {
+    padding: 8px 12px !important;
+}
+
+.apexcharts-menu-item:hover {
+    background: #f7f2e8 !important;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .metricas-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .metricas-header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .grafica-card {
+        min-height: auto;
+    }
+
+}
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .metricas-page {
+        padding-top: 24px !important;
+    }
+
+    .metricas-header-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .metrica-card {
+        min-height: 140px;
+    }
+
+    .grafica-heading,
+    .proximos-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .proximos-heading .btn {
+        width: 100%;
+    }
+
+    .grafica-contenedor {
+        min-height: 250px;
+    }
+
+}
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .metricas-title {
+        font-size: 2rem;
+    }
+
+    .metricas-subtitle {
+        font-size: 0.92rem;
+    }
+
+    .metrica-value {
+        font-size: 2.15rem;
+    }
+
+    .grafica-card .card-body {
+        padding: 16px !important;
+    }
+
+    .grafica-tag {
+        display: none;
+    }
+
+}

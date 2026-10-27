@@ -1,0 +1,1302 @@
+/* ======================================================
+   VARIABLES GLOBALES
+====================================================== */
+
+:root{
+    --color-amarillo-pastel: #fdf3b8;
+    --color-texto-oscuro: #2b2b2b;
+    --color-taupe: #b6ad9d;
+    --color-crema: #fcf9f2;
+    --color-hover-tabla: #f5f9ff;
+}
+
+/* ======================================================
+   ESTILOS GENERALES
+====================================================== */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-crema) !important;
+    color: var(--color-texto-oscuro);
+}
+
+/* ======================================================
+   NAVBAR
+====================================================== */
+
+.nav-elegante{
+    background-color: var(--color-amarillo-pastel) !important;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.navbar-brand{
+    font-weight: bold;
+}
+
+.menu-link{
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    font-weight: 500;
+    padding: 0.5rem 1.2rem !important;
+    color: var(--color-texto-oscuro) !important;
+    transition: opacity 0.3s ease;
+}
+
+.menu-link:hover,
+.menu-link.active{
+    opacity: 0.5;
+}
+
+/* ======================================================
+   CARDS
+====================================================== */
+
+.card{
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: none !important;
+}
+
+.card:hover{
+    transform: translateY(-3px);
+}
+
+/* ======================================================
+   FORMULARIOS
+====================================================== */
+
+.form-control,
+.form-select{
+    border-radius: 12px;
+    padding: 10px;
+}
+
+textarea{
+    resize: none;
+}
+
+input[type="file"]{
+    padding: 10px;
+}
+
+/* ======================================================
+   BOTONES
+====================================================== */
+
+.btn{
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.btn:hover{
+    transform: scale(1.02);
+}
+
+.btn-primary,
+.bg-primary,
+.text-bg-primary{
+    background-color: var(--color-taupe) !important;
+    border-color: var(--color-taupe) !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover{
+    background-color: #9c9384 !important;
+    border-color: #9c9384 !important;
+}
+
+.text-primary{
+    color: var(--color-taupe) !important;
+}
+
+/* ======================================================
+   BADGES
+====================================================== */
+
+.badge{
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-weight: 500;
+}
+
+/* ======================================================
+   TABLAS
+====================================================== */
+
+.table{
+    background-color: white;
+}
+
+.table td,
+.table th{
+    vertical-align: middle;
+}
+
+.table thead{
+    background-color: #f8f8f8;
+}
+
+.table tbody tr{
+    transition: 0.2s ease;
+}
+
+.table tbody tr:hover{
+    background-color: var(--color-hover-tabla);
+}
+
+/* ======================================================
+   HERO SECTION - INICIO
+====================================================== */
+
+.hero-section{
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.hero-bg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s ease;
+}
+
+.hero-overlay{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+.logo-navbar{
+    height: 37px;
+    width: auto;
+    transition: 0.3s ease;
+}
+
+.hero-content{
+    position: relative;
+    z-index: 2;
+}
+
+.hero-card{
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 25px;
+}
+
+.hero-title{
+    color: var(--color-amarillo-pastel);
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+}
+
+.hero-text{
+    font-size: 1.2rem;
+}
+
+/* ======================================================
+   BLOQUES INFERIORES
+====================================================== */
+
+.franja-inferior{
+    height: 15vh;
+}
+
+.bloque-taupe{
+    background-color: var(--color-taupe);
+    min-height: 220px;
+}
+
+.bloque-crema{
+    background-color: var(--color-crema);
+    min-height: 220px;
+}
+
+/* ======================================================
+   SOMBRAS Y EFECTOS
+====================================================== */
+
+.shadow-lg{
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.12) !important;
+}
+
+
+
+/* ======================================================
+   BREAKPOINTS - TABLETS
+====================================================== */
+
+@media (max-width: 992px){
+
+    .navbar-brand{
+        font-size: 1.1rem;
+    }
+
+    .card-body{
+        padding: 2rem;
+    }
+
+    .table{
+        font-size: 0.95rem;
+    }
+
+    .hero-title{
+        font-size: 3rem;
+    }
+
+    .hero-text{
+        font-size: 1rem;
+    }
+
+    .hero-section{
+        min-height: 75vh;
+    }
+
+    .nav-elegante{
+        padding-top: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .logo-navbar{
+        height: 33px;
+    }
+}
+
+/* ======================================================
+   BREAKPOINTS - MÓVILES
+====================================================== */
+
+@media (max-width: 768px){
+
+    h2{
+        font-size: 1.6rem;
+    }
+
+    h3{
+        font-size: 1.3rem;
+    }
+
+    .btn{
+        width: 100%;
+    }
+
+    .table{
+        font-size: 0.85rem;
+    }
+
+    .table th,
+    .table td{
+        white-space: nowrap;
+    }
+
+    .badge{
+        font-size: 0.75rem;
+    }
+
+    .hero-title{
+        font-size: 2.2rem;
+    }
+
+    .hero-text{
+        font-size: 0.95rem;
+    }
+
+    .hero-card{
+        padding: 2rem;
+    }
+
+    .hero-section{
+        min-height: 60vh;
+    }
+
+    .hero-bg{
+        object-position: center top;
+    }
+
+    .nav-elegante{
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .logo-navbar{
+        height: 28px;
+    }
+
+}
+
+/* ======================================================
+   BREAKPOINTS - CELULARES PEQUEÑOS
+====================================================== */
+
+@media (max-width: 576px){
+
+    .container-fluid{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .card-body{
+        padding: 1.2rem;
+    }
+
+    .form-control,
+    .form-select{
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand{
+        font-size: 1rem;
+    }
+
+    .hero-title{
+        font-size: 1.8rem;
+    }
+
+    .hero-text{
+        font-size: 0.9rem;
+    }
+
+    .hero-card{
+        padding: 1.5rem;
+    }
+
+    .hero-section{
+        min-height: 50vh;
+    }
+
+    .hero-bg{
+        object-position: center;
+    }
+
+    .logo-navbar{
+        height: 24px;
+    }
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-page {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(13, 110, 253, 0.13),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f8ff 0%,
+            #eef3fb 50%,
+            #f8f9fc 100%
+        );
+}
+
+.login-card {
+    border-radius: 26px;
+    background: #ffffff;
+}
+
+.login-form-panel {
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* =========================================================
+   PANEL DE MARCA
+========================================================= */
+
+.login-brand-panel {
+    position: relative;
+    min-height: 660px;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12, 40, 92, 0.96),
+            rgba(13, 110, 253, 0.88)
+        ),
+        url("../img/eventoInicio.png") center / cover no-repeat;
+}
+
+.login-brand-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255, 255, 255, 0.18),
+            transparent 35%
+        );
+}
+
+.login-brand-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 55px 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.login-logo {
+    width: 180px;
+    max-width: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.login-logo-mobile {
+    width: 150px;
+    max-width: 70%;
+    object-fit: contain;
+}
+
+.login-brand-badge {
+    width: fit-content;
+    padding: 8px 14px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(8px);
+}
+
+.login-brand-title {
+    margin-bottom: 18px;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 800;
+    line-height: 1.08;
+}
+
+.login-brand-description {
+    margin-bottom: 32px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.04rem;
+    line-height: 1.7;
+}
+
+.login-features {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.login-feature-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    font-weight: 700;
+}
+
+/* =========================================================
+   PESTAÑAS
+========================================================= */
+
+.login-tabs {
+    padding: 5px;
+    border: 1px solid #e6eaf0;
+    border-radius: 14px;
+    background: #f4f6fa;
+}
+
+.login-tabs .nav-link {
+    border-radius: 10px;
+    color: #596274;
+    font-weight: 600;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.login-tabs .nav-link:hover {
+    color: #0d6efd;
+}
+
+.login-tabs .nav-link.active {
+    background: #ffffff;
+    color: #0d6efd;
+    box-shadow: 0 4px 14px rgba(23, 45, 80, 0.1);
+}
+
+/* =========================================================
+   CAMPOS Y BOTONES
+========================================================= */
+
+.login-input {
+    min-height: 54px;
+    border: 1px solid #dfe4ec;
+    border-radius: 13px;
+    background: #fbfcfe;
+    font-size: 1rem;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.login-input:focus {
+    border-color: rgba(13, 110, 253, 0.6);
+    background: #ffffff;
+    box-shadow: 0 0 0 0.22rem rgba(13, 110, 253, 0.12);
+}
+
+.pin-input {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.65rem;
+}
+
+.login-main-button {
+    min-height: 54px;
+    border: none;
+    border-radius: 13px;
+    font-weight: 650;
+    box-shadow: 0 10px 22px rgba(13, 110, 253, 0.2);
+}
+
+#btnGenerarQR {
+    min-height: 52px;
+    border-radius: 13px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   SEPARADOR
+========================================================= */
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #8a93a3;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.login-divider::before,
+.login-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #e4e8ef;
+}
+
+/* =========================================================
+   CÓDIGO QR
+========================================================= */
+
+.qr-login-container {
+    padding: 24px;
+    border: 1px solid #e3e8f0;
+    border-radius: 18px;
+    background: #f8faff;
+    animation: mostrarQR 0.3s ease;
+}
+
+.qr-image-container img {
+    width: 230px;
+    max-width: 100%;
+    padding: 12px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(23, 45, 80, 0.12);
+}
+
+.qr-status-message {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #6c757d;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(23, 45, 80, 0.07);
+}
+
+@keyframes mostrarQR {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .login-page {
+        align-items: flex-start;
+    }
+
+    .login-card {
+        border-radius: 20px;
+    }
+
+    .login-form-panel {
+        min-height: auto;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+    .login-page .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .login-card {
+        border-radius: 18px;
+    }
+
+    .login-form-panel {
+        padding: 28px 22px !important;
+    }
+
+    .pin-input {
+        font-size: 1.35rem;
+        letter-spacing: 0.42rem;
+    }
+
+    .qr-login-container {
+        padding: 18px 12px;
+    }
+
+}
+
+.login-section {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+}
+
+.login-card {
+    background: #ffffff;
+}
+
+.login-logo {
+    width: 150px;
+    max-width: 70%;
+    height: auto;
+    object-fit: contain;
+}
+
+.login-block {
+    width: 100%;
+}
+
+.login-input {
+    min-height: 52px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #ffffff;
+    font-size: 1rem;
+}
+
+.login-input:focus {
+    border-color: #e2c84f;
+    box-shadow: 0 0 0 0.2rem rgba(253, 243, 184, 0.7);
+}
+
+.login-primary-button {
+    min-height: 52px;
+    border: 1px solid #ead86d;
+    border-radius: 12px;
+    background: #fdf3b8;
+    color: #2f2f2f;
+    font-weight: 600;
+}
+
+.login-primary-button:hover,
+.login-primary-button:focus {
+    border-color: #ddc548;
+    background: #f8e98f;
+    color: #222222;
+}
+
+.login-secondary-button {
+    min-height: 52px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #333333;
+    font-weight: 600;
+}
+
+.login-secondary-button:hover,
+.login-secondary-button:focus {
+    border-color: #e2c84f;
+    background: #fffbea;
+    color: #222222;
+}
+
+.login-qr-button {
+    min-height: 52px;
+    border: 1px solid #e2c84f;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #554b1c;
+    font-weight: 600;
+}
+
+.login-qr-button:hover,
+.login-qr-button:focus {
+    background: #fdf3b8;
+    color: #2f2f2f;
+}
+
+.login-qr-container {
+    padding: 22px;
+    border: 1px solid #eee2a2;
+    border-radius: 16px;
+    background: #fffdf1;
+}
+
+.login-qr-container img {
+    width: 230px;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+@media (max-width: 767.98px) {
+
+    .login-section {
+        align-items: flex-start;
+    }
+
+    .login-card .card-body {
+        padding: 28px 20px !important;
+    }
+
+    .login-logo {
+        width: 125px;
+    }
+
+    .login-input,
+    .login-primary-button,
+    .login-secondary-button,
+    .login-qr-button {
+        min-height: 48px;
+        font-size: 0.95rem;
+    }
+
+}
+
+/* ======================================================
+   INICIO PROFESIONAL
+====================================================== */
+
+.inicio-hero {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+}
+
+.inicio-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 20, 20, 0.82) 0%,
+            rgba(20, 20, 20, 0.58) 55%,
+            rgba(20, 20, 20, 0.45) 100%
+        );
+}
+
+.inicio-hero-container {
+    z-index: 2;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.inicio-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50px;
+    background: rgba(253, 243, 184, 0.16);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+
+.inicio-title {
+    max-width: 720px;
+}
+
+.inicio-description {
+    max-width: 650px;
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.inicio-btn-principal,
+.inicio-btn-secundario {
+    min-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+.inicio-panel-label {
+    color: var(--color-taupe);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.inicio-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inicio-feature-item {
+    display: grid;
+    grid-template-columns: 48px 1fr 24px;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid #ece8df;
+    border-radius: 16px;
+    color: var(--color-texto-oscuro) !important;
+    text-decoration: none;
+    letter-spacing: normal;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.inicio-feature-item:hover {
+    opacity: 1;
+    transform: translateX(4px);
+    border-color: #ded3a0;
+    background: #fffdf2;
+}
+
+.inicio-feature-number {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--color-amarillo-pastel);
+    color: #5d5530;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.inicio-feature-content h5 {
+    color: var(--color-texto-oscuro);
+}
+
+.inicio-feature-content p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.inicio-feature-arrow {
+    color: var(--color-taupe);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* ======================================================
+   SEGURIDAD
+====================================================== */
+
+.inicio-security-info {
+    position: sticky;
+    top: 130px;
+}
+
+.inicio-security-label {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 50px;
+    background: var(--color-amarillo-pastel);
+    color: #5c5533;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.inicio-security-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inicio-security-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.inicio-method-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--color-taupe);
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.07);
+}
+
+.inicio-security-shield {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: var(--color-amarillo-pastel);
+    color: #5b5432;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.inicio-pin-status {
+    border: 1px solid #eee2a2;
+    border-radius: 14px;
+    background: #fffdf2;
+    color: var(--color-texto-oscuro);
+}
+
+.inicio-pin-input {
+    min-height: 52px;
+    border: 1px solid #dedbd3;
+    background: #fffefa;
+}
+
+.inicio-pin-input:focus {
+    border-color: #d7c45f;
+    box-shadow: 0 0 0 0.2rem rgba(253, 243, 184, 0.65);
+}
+
+.inicio-security-note {
+    padding: 16px;
+    border-top: 1px solid #ece8df;
+}
+
+/* ======================================================
+   RESPONSIVE INICIO
+====================================================== */
+
+@media (max-width: 991.98px) {
+
+    .inicio-hero {
+        min-height: auto;
+    }
+
+    .inicio-hero-container {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .inicio-security-info {
+        position: static;
+        text-align: center;
+    }
+
+    .inicio-security-methods {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+    .inicio-hero-container {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .inicio-description {
+        font-size: 1rem;
+    }
+
+    .inicio-panel-card,
+    .inicio-security-card {
+        border-radius: 18px;
+    }
+
+    .inicio-security-section {
+        padding: 3.5rem 0;
+    }
+
+    .inicio-feature-item {
+        grid-template-columns: 42px 1fr;
+    }
+
+    .inicio-feature-arrow {
+        display: none;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+    .inicio-badge {
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+
+    .inicio-description {
+        line-height: 1.6;
+    }
+
+    .inicio-feature-item {
+        padding: 14px;
+    }
+
+    .inicio-security-section .card-body {
+        padding: 1.4rem !important;
+    }
+
+}
+
+/* ======================================================
+   INICIO CON CONFIGURACIÓN DE ACCESO
+====================================================== */
+
+.inicio-hero {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+}
+
+.inicio-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 20, 20, 0.82) 0%,
+            rgba(20, 20, 20, 0.62) 55%,
+            rgba(20, 20, 20, 0.48) 100%
+        );
+}
+
+.inicio-hero-container {
+    z-index: 2;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.inicio-badge {
+    display: inline-flex;
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 50px;
+    background: rgba(253, 243, 184, 0.18);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+}
+
+.inicio-description {
+    max-width: 620px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.inicio-btn-principal,
+.inicio-btn-secundario {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+/* ======================================================
+   TARJETA DE CONFIGURACIÓN
+====================================================== */
+
+.inicio-access-card {
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(14px);
+}
+
+.inicio-access-card:hover {
+    transform: none;
+}
+
+.inicio-panel-label {
+    color: var(--color-taupe);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.inicio-security-shield {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: var(--color-amarillo-pastel);
+    color: #5b5432;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.inicio-pin-status {
+    border: 1px solid #eee2a2;
+    border-radius: 14px;
+    background: #fffdf2;
+    color: var(--color-texto-oscuro);
+}
+
+.inicio-pin-input {
+    min-height: 50px;
+    border: 1px solid #dedbd3;
+    background: #fffefa;
+}
+
+.inicio-pin-input:focus {
+    border-color: #d7c45f;
+    background: #ffffff;
+    box-shadow: 0 0 0 0.2rem rgba(253, 243, 184, 0.7);
+}
+
+.inicio-access-footer {
+    border-top: 1px solid #ece8df;
+}
+
+.inicio-access-method {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border: 1px solid #ebe2b0;
+    border-radius: 50px;
+    background: #fffdf2;
+    color: #625a35;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 991.98px) {
+
+    .inicio-hero {
+        min-height: auto;
+    }
+
+    .inicio-hero-container {
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+    .inicio-hero-container {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .inicio-description {
+        font-size: 1rem;
+    }
+
+    .inicio-access-card {
+        border-radius: 18px;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+    .inicio-badge {
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+
+    .inicio-description {
+        line-height: 1.6;
+    }
+
+    .inicio-access-card .card-body {
+        padding: 1.4rem !important;
+    }
+
+    .inicio-security-shield {
+        width: 50px;
+        height: 50px;
+        flex-basis: 50px;
+        border-radius: 15px;
+    }
+
+}

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar acceso QR - MeetUp Planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+    <style>
+        :root {
+            --amarillo-pastel: #fdf3b8;
+            --texto-oscuro: #2b2b2b;
+            --taupe: #b6ad9d;
+            --taupe-oscuro: #9c9384;
+            --crema: #fcf9f2;
+            --blanco: #ffffff;
+            --borde: #e8e3d9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--texto-oscuro);
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(253, 243, 184, 0.95),
+                    transparent 42%
+                ),
+                var(--crema);
+        }
+
+        .qr-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .qr-card {
+            overflow: hidden;
+            border: 0;
+            border-radius: 24px;
+            background: var(--blanco);
+            box-shadow: 0 20px 50px rgba(43, 43, 43, 0.12);
+        }
+
+        /* PANEL AMARILLO */
+
+        .qr-brand-panel {
+            height: 100%;
+            min-height: 650px;
+            padding: 45px 38px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--amarillo-pastel);
+        }
+
+        .qr-logo {
+            width: 170px;
+            max-width: 75%;
+            height: auto;
+            margin-bottom: 30px;
+            object-fit: contain;
+        }
+
+        .qr-brand-label {
+            width: fit-content;
+            margin-bottom: 18px;
+            padding: 8px 14px;
+            border: 1px solid rgba(43, 43, 43, 0.12);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.6);
+            color: #5d573d;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .qr-brand-title {
+            margin-bottom: 16px;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.18;
+        }
+
+        .qr-brand-description {
+            margin-bottom: 28px;
+            color: #625e50;
+            line-height: 1.65;
+        }
+
+        .qr-method-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .qr-method-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .qr-method-info-icon {
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: var(--blanco);
+            color: #625a35;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 5px 14px rgba(43, 43, 43, 0.08);
+        }
+
+        .qr-method-info-item p {
+            margin: 2px 0 0;
+            color: #746e5a;
+            font-size: 0.86rem;
+            line-height: 1.4;
+        }
+
+        /* FORMULARIO */
+
+        .qr-form-panel {
+            min-height: 650px;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .qr-mobile-logo {
+            width: 140px;
+            max-width: 65%;
+            margin-bottom: 18px;
+        }
+
+        .qr-form-badge {
+            display: inline-flex;
+            width: fit-content;
+            margin-bottom: 14px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: var(--amarillo-pastel);
+            color: #5d573d;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .qr-form-title {
+            margin-bottom: 10px;
+            font-size: 1.85rem;
+            font-weight: 700;
+        }
+
+        .qr-form-description {
+            margin-bottom: 24px;
+            color: #77736a;
+            line-height: 1.55;
+        }
+
+        /* SELECTOR DE MÉTODO */
+
+        .qr-method-selector {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 5px;
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            background: #f7f5ef;
+        }
+
+        .qr-method-button {
+            min-height: 44px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: #6e6a61;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .qr-method-button.active {
+            background: var(--blanco);
+            color: #5d5530;
+            box-shadow: 0 4px 12px rgba(43, 43, 43, 0.09);
+        }
+
+        .form-label {
+            margin-bottom: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .qr-input {
+            min-height: 52px;
+            padding: 12px 14px;
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            background: #fffefa;
+            font-size: 1rem;
+        }
+
+        .qr-input:focus {
+            border-color: #d7c45f;
+            background: var(--blanco);
+            box-shadow: 0 0 0 0.2rem rgba(253, 243, 184, 0.75);
+        }
+
+        .qr-pin-input {
+            text-align: center;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.45rem;
+        }
+
+        .qr-confirm-button {
+            min-height: 52px;
+            border: 1px solid var(--taupe);
+            border-radius: 12px;
+            background: var(--taupe);
+            color: var(--blanco);
+            font-weight: 600;
+        }
+
+        .qr-confirm-button:hover,
+        .qr-confirm-button:focus {
+            border-color: var(--taupe-oscuro);
+            background: var(--taupe-oscuro);
+            color: var(--blanco);
+        }
+
+        .qr-security-note {
+            margin-top: 22px;
+            padding: 14px 16px;
+            border: 1px solid #eee4aa;
+            border-radius: 12px;
+            background: #fffdf1;
+            color: #696247;
+            font-size: 0.84rem;
+            line-height: 1.5;
+        }
+
+        #mensajeQR {
+            border-radius: 12px;
+            font-size: 0.92rem;
+        }
+
+        .qr-success-icon {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #dff4e5;
+            color: #297a42;
+            font-size: 1.45rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 991.98px) {
+            .qr-form-panel {
+                min-height: auto;
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .qr-page {
+                align-items: flex-start;
+                padding: 20px 10px;
+            }
+
+            .qr-card {
+                border-radius: 18px;
+            }
+
+            .qr-form-panel {
+                padding: 32px 24px;
+            }
+
+            .qr-form-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .qr-page {
+                padding: 10px 7px;
+            }
+
+            .qr-form-panel {
+                padding: 26px 18px;
+            }
+
+            .qr-method-selector {
+                gap: 5px;
+            }
+
+            .qr-method-button {
+                font-size: 0.82rem;
+            }
+
+            .qr-input,
+            .qr-confirm-button {
+                min-height: 48px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="qr-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-11 col-lg-10 col-xl-9">
+                    <div class="card qr-card">
+                        <div class="row g-0">
+                            <div class="col-lg-5 d-none d-lg-block">
+                                <div class="qr-brand-panel">
+                                    <img src="img/logo.png" alt="MeetUp Planner" class="qr-logo">
+                                    <span class="qr-brand-label">Acceso seguro</span>
+                                    <h1 class="qr-brand-title">Confirma el inicio de sesión</h1>
+                                    <p class="qr-brand-description">Selecciona el método que deseas utilizar para autorizar el acceso mediante QR.</p>
+                                    <div class="qr-method-info">
+                                        <div class="qr-method-info-item">
+                                            <span class="qr-method-info-icon">1</span>
+                                            <div>
+                                                <strong>Contraseña</strong>
+                                                <p>Utiliza la contraseña principal registrada en tu cuenta.</p>
+                                            </div>
+                                        </div>
+                                        <div class="qr-method-info-item">
+                                            <span class="qr-method-info-icon">2</span>
+                                            <div>
+                                                <strong>PIN</strong>
+                                                <p>Usa el PIN de 4 a 6 números configurado en la aplicación.</p>
+                                            </div>
+                                        </div>
+                                        <div class="qr-method-info-item">
+                                            <span class="qr-method-info-icon">3</span>
+                                            <div>
+                                                <strong>Confirmación</strong>
+                                                <p>El otro dispositivo iniciará sesión automáticamente.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-7">
+                                <div class="qr-form-panel">
+                                    <div class="d-lg-none text-center">
+                                        <img src="img/logo.png" alt="MeetUp Planner" class="qr-mobile-logo">
+                                    </div>
+                                    <div class="text-center text-lg-start">
+                                        <span class="qr-form-badge">MeetUp Planner</span>
+                                        <h2 class="qr-form-title">Confirmar acceso con QR</h2>
+                                        <p class="qr-form-description">Ingresa tu correo y selecciona el método con el que deseas confirmar tu identidad.</p>
+                                    </div>
+                                    <div class="qr-method-selector">
+                                        <button type="button" class="qr-method-button active" id="btnMetodoContrasena">Contraseña</button>
+                                        <button type="button" class="qr-method-button" id="btnMetodoPIN">PIN</button>
+                                    </div>
+                                    <form id="frmLoginQR">
+                                        <div class="mb-3">
+                                            <label for="txtQRCorreo" class="form-label">Correo electrónico</label>
+                                            <input type="email" id="txtQRCorreo" class="form-control qr-input" placeholder="correo@email.com" autocomplete="email">
+                                        </div>
+                                        <div id="bloqueQRContrasena" class="mb-4">
+                                            <label for="txtQRContrasena" class="form-label">Contraseña</label>
+                                            <input type="password" id="txtQRContrasena" class="form-control qr-input" placeholder="Ingresa tu contraseña" autocomplete="current-password">
+                                        </div>
+                                        <div id="bloqueQRPIN" class="mb-4 d-none">
+                                            <label for="txtQRPIN" class="form-label">PIN</label>
+                                            <input type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="6" id="txtQRPIN" class="form-control qr-input qr-pin-input" placeholder="••••">
+                                            <div class="form-text text-center"> Escribe entre 4 y 6 números.</div>
+                                        </div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn qr-confirm-button" id="btnConfirmarQR">Confirmar acceso</button>
+                                        </div>
+                                    </form>
+                                    <div id="mensajeQR" class="alert mt-4 mb-0 d-none"></div>
+                                    <div class="qr-security-note"><strong>Acceso protegido:</strong> la contraseña y el PIN solamente se utilizan para validar tu cuenta.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API = "https://lightgreen-panther-830342.hostingersite.com/api/eventos.php";
+
+        let metodoQR = "contrasena";
+
+        function obtenerParametro(nombre) {
+
+            const parametros = new URLSearchParams(
+                window.location.search
+            );
+
+            return parametros.get(nombre);
+        }
+
+        function mostrarMensaje(tipo, mensaje) {
+
+            $("#mensajeQR")
+                .removeClass(
+                    "d-none alert-success alert-danger alert-warning"
+                )
+                .addClass("alert-" + tipo)
+                .html(mensaje);
+        }
+
+        function restaurarBoton() {
+
+            $("#btnConfirmarQR")
+                .prop("disabled", false)
+                .html("Confirmar acceso");
+        }
+
+        function seleccionarMetodoQR(metodo) {
+
+            metodoQR = metodo;
+
+            $(".qr-method-button")
+                .removeClass("active");
+
+            if (metodo === "pin") {
+
+                $("#btnMetodoPIN")
+                    .addClass("active");
+
+                $("#bloqueQRContrasena")
+                    .addClass("d-none");
+
+                $("#bloqueQRPIN")
+                    .removeClass("d-none");
+
+                $("#txtQRContrasena")
+                    .val("");
+
+                setTimeout(function () {
+                    $("#txtQRPIN").trigger("focus");
+                }, 100);
+
+            } else {
+
+                $("#btnMetodoContrasena")
+                    .addClass("active");
+
+                $("#bloqueQRPIN")
+                    .addClass("d-none");
+
+                $("#bloqueQRContrasena")
+                    .removeClass("d-none");
+
+                $("#txtQRPIN")
+                    .val("");
+
+                setTimeout(function () {
+                    $("#txtQRContrasena").trigger("focus");
+                }, 100);
+            }
+
+            $("#mensajeQR")
+                .addClass("d-none");
+        }
+
+        const tokenQR = obtenerParametro("tokenQR");
+
+        if (!tokenQR) {
+
+            mostrarMensaje(
+                "danger",
+                `
+                    <strong>Código QR inválido.</strong><br>
+                    Abre esta página escaneando el código
+                    generado por MeetUp Planner.
+                `
+            );
+
+            $("#frmLoginQR :input")
+                .prop("disabled", true);
+
+            $(".qr-method-button")
+                .prop("disabled", true);
+        }
+
+        $("#btnMetodoContrasena").on(
+            "click",
+            function () {
+                seleccionarMetodoQR("contrasena");
+            }
+        );
+
+        $("#btnMetodoPIN").on(
+            "click",
+            function () {
+                seleccionarMetodoQR("pin");
+            }
+        );
+
+        /*
+            Permitir solamente números en el campo del PIN.
+        */
+        $("#txtQRPIN").on("input", function () {
+
+            const valor = $(this)
+                .val()
+                .replace(/[^0-9]/g, "")
+                .substring(0, 6);
+
+            $(this).val(valor);
+        });
+
+        $("#frmLoginQR").on("submit", function (e) {
+
+            e.preventDefault();
+
+            const correo =
+                $("#txtQRCorreo").val().trim();
+
+            const contrasena =
+                $("#txtQRContrasena").val().trim();
+
+            const pin =
+                $("#txtQRPIN").val().trim();
+
+            if (!tokenQR) {
+
+                mostrarMensaje(
+                    "danger",
+                    "El código QR no contiene un token válido."
+                );
+
+                return;
+            }
+
+            if (correo === "") {
+
+                mostrarMensaje(
+                    "danger",
+                    "El correo electrónico es obligatorio."
+                );
+
+                return;
+            }
+
+            if (
+                metodoQR === "contrasena" &&
+                contrasena === ""
+            ) {
+
+                mostrarMensaje(
+                    "danger",
+                    "Escribe tu contraseña."
+                );
+
+                return;
+            }
+
+            if (metodoQR === "pin") {
+
+                if (pin === "") {
+
+                    mostrarMensaje(
+                        "danger",
+                        "Escribe tu PIN."
+                    );
+
+                    return;
+                }
+
+                if (!/^[0-9]{4,6}$/.test(pin)) {
+
+                    mostrarMensaje(
+                        "danger",
+                        "El PIN debe contener entre 4 y 6 números."
+                    );
+
+                    return;
+                }
+            }
+
+            $("#btnConfirmarQR")
+                .prop("disabled", true)
+                .html(`
+                    <span
+                        class="spinner-border spinner-border-sm me-2"
+                        aria-hidden="true">
+                    </span>
+                    Confirmando...
+                `);
+
+            $.ajax({
+                url: API + "?confirmarQR",
+                type: "POST",
+                dataType: "json",
+
+                data: {
+                    tokenQR: tokenQR,
+                    correo: correo,
+                    metodo: metodoQR,
+                    contrasena:
+                        metodoQR === "contrasena"
+                            ? contrasena
+                            : "",
+                    pin:
+                        metodoQR === "pin"
+                            ? pin
+                            : ""
+                },
+
+                success: function (respuesta) {
+
+                    restaurarBoton();
+
+                    if (respuesta.success) {
+
+                        localStorage.setItem(
+                            "jwt",
+                            respuesta.jwt
+                        );
+
+                        mostrarMensaje(
+                            "success",
+                            `
+                                <div class="text-center">
+
+                                    <div class="qr-success-icon">
+                                        ✓
+                                    </div>
+
+                                    <strong>
+                                        Acceso confirmado correctamente
+                                    </strong>
+
+                                    <div class="mt-2">
+                                        Método utilizado:
+                                        ${
+                                            respuesta.metodo === "pin"
+                                                ? "PIN"
+                                                : "Contraseña"
+                                        }.
+                                    </div>
+
+                                    <div class="small mt-2">
+                                        El otro dispositivo iniciará
+                                        sesión automáticamente.
+                                    </div>
+
+                                </div>
+                            `
+                        );
+
+                        $("#frmLoginQR :input")
+                            .prop("disabled", true);
+
+                        $(".qr-method-button")
+                            .prop("disabled", true);
+
+                        setTimeout(function () {
+
+                            window.location.href =
+                                "index.html";
+
+                        }, 1800);
+
+                    } else {
+
+                        mostrarMensaje(
+                            "danger",
+                            respuesta.mensaje ||
+                            "No se pudo confirmar el código QR."
+                        );
+                    }
+                },
+
+                error: function (xhr) {
+
+                    restaurarBoton();
+
+                    let mensaje =
+                        "No fue posible conectar con el servidor.";
+
+                    try {
+
+                        const respuestaError =
+                            JSON.parse(xhr.responseText);
+
+                        if (respuestaError.mensaje) {
+
+                            mensaje =
+                                respuestaError.mensaje;
+                        }
+
+                    } catch (error) {
+
+                        console.log(
+                            "Respuesta inválida:",
+                            xhr.responseText
+                        );
+                    }
+
+                    mostrarMensaje(
+                        "danger",
+                        mensaje
+                    );
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
