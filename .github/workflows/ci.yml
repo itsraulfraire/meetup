@@ -1,0 +1,50 @@
+
+name: CI - Meetup Planner
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Validar proyecto
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validar sintaxis PHP
+        run: |
+          find api apis -type f -name "*.php" \
+            -exec php -l {} \;
+
+      - name: Validar sintaxis JavaScript
+        run: |
+          find js -type f -name "*.js" \
+            -exec node --check {} \;
+
+      - name: Preparar artefacto
+        run: |
+          mkdir -p build
+          cp -r api apis css js build/
+          find . -maxdepth 1 -name "*.html" \
+            -exec cp {} build/ \;
+
+      - name: Guardar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: meetup-planner-build
+          path: build/
