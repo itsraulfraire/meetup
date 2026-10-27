@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Validar proyecto
+    name: Build - Preparar proyecto
     runs-on: ubuntu-latest
 
     steps:
@@ -28,19 +28,25 @@ jobs:
 
       - name: Validar sintaxis PHP
         run: |
-          find api apis -type f -name "*.php" \
-            -exec php -l {} \;
+          for carpeta in api apis; do
+            if [ -d "$carpeta" ]; then
+              find "$carpeta" -type f -name "*.php" \
+                -exec php -l {} \;
+            else
+              echo "Carpeta $carpeta no encontrada, se omite"
+            fi
+          done
 
-      - name: Validar sintaxis JavaScript
-        run: |
-          find js -type f -name "*.js" \
-            -exec node --check {} \;
-
-      - name: Preparar artefacto
+      - name: Preparar Build
         run: |
           mkdir -p build
-          cp -r api apis css js build/
-          find . -maxdepth 1 -name "*.html" \
+          cp -r css js build/
+
+          if [ -d img ]; then
+            cp -r img build/
+          fi
+
+          find . -maxdepth 1 -type f -name "*.html" \
             -exec cp {} build/ \;
 
       - name: Guardar artefacto
@@ -48,3 +54,29 @@ jobs:
         with:
           name: meetup-planner-build
           path: build/
+          if-no-files-found: error
+
+  testing:
+    name: Testing - Validar JavaScript
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verificar sintaxis JavaScript
+        run: |
+          find js -type f -name "*.js" \
+            -exec node --check {} \;
+
+      - name: Verificar archivos principales
+        run: |
+          test -f index.html
+          test -d css
+          test -d js
+          echo "Estructura del proyecto verificada"
